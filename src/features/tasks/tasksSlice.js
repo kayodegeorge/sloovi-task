@@ -28,10 +28,11 @@ export const addNewTask = createAsyncThunk("tasks/addNewTask", async (task) => {
 
 export const editTask = createAsyncThunk(
   "tasks/editTask",
-  async (id, editedTask) => {
+  async (taskDetails) => {
+    const { id, edited_task } = taskDetails;
     const response = await axios.put(
       `https://stage.api.sloovi.com/task/lead_465c14d0e99e4972b6b21ffecf3dd691/${id}?company_id=company_413ef22b6237417fb1fba7917f0f69e7`,
-      editedTask,
+      edited_task,
       {
         headers: headers,
       }

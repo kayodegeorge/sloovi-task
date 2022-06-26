@@ -28,7 +28,6 @@ const TaskForm = ({ closeForm }) => {
     const arr = unformatted_time.split(":");
     const formatted_time = arr[0] * 3600 + arr[1] * 60;
     setTime(formatted_time);
-    console.log(time);
   };
 
   const time_zone = new Date().getTimezoneOffset() * 60;

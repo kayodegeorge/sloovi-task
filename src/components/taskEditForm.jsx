@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { editTask, deleteTask, fetchTasks } from "../features/tasks/tasksSlice";
+import { deleteTask, editTask, fetchTasks } from "../features/tasks/tasksSlice";
 
 const TaskEditForm = ({ closeForm, task }) => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.users);
 
-  const [user, setUser] = useState("");
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState(0);
+  const [user, setUser] = useState(task.assigned_user);
+  const [description, setDescription] = useState(task.task_msg);
+  const [date, setDate] = useState(task.task_date);
+  const [time, setTime] = useState(task.task_time);
 
   const onUserChange = (e) => {
     setUser(e.target.value);
@@ -33,6 +33,8 @@ const TaskEditForm = ({ closeForm, task }) => {
 
   const time_zone = new Date().getTimezoneOffset() * 60; // timezone as an integer
   const is_completed = 0;
+
+  const id = task.id;
   const edited_task = {
     assigned_user: user,
     task_date: date,
@@ -44,7 +46,7 @@ const TaskEditForm = ({ closeForm, task }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(editTask(task.id, edited_task));
+    dispatch(editTask({ id, edited_task }));
     closeForm();
     dispatch(fetchTasks());
   };
