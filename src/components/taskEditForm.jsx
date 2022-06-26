@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTask, editTask, fetchTasks } from "../features/tasks/tasksSlice";
+import { deleteTask, editTask } from "../features/tasks/tasksSlice";
 
 const TaskEditForm = ({ closeForm, task }) => {
   const dispatch = useDispatch();
@@ -48,14 +48,14 @@ const TaskEditForm = ({ closeForm, task }) => {
     e.preventDefault();
     dispatch(editTask({ id, edited_task }));
     closeForm();
-    dispatch(fetchTasks());
+  
   };
 
   const handleDelete = (e) => {
     e.preventDefault();
     dispatch(deleteTask(task.id));
     closeForm();
-    dispatch(fetchTasks());
+
   };
 
   return (
@@ -93,7 +93,7 @@ const TaskEditForm = ({ closeForm, task }) => {
         <label className="mt-4">Assign User</label>
         <select onChange={onUserChange} className="border-2">
           {users.map((user, index) => (
-            <option key={index} value={user.name}>
+             <option key={index} value={user.id}>
               {user.name}
             </option>
           ))}

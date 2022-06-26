@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewTask, fetchTasks } from "../features/tasks/tasksSlice";
+import { addNewTask } from "../features/tasks/tasksSlice";
 
 const TaskForm = ({ closeForm }) => {
   const dispatch = useDispatch();
@@ -45,7 +45,6 @@ const TaskForm = ({ closeForm }) => {
     e.preventDefault();
     dispatch(addNewTask(task));
     closeForm();
-    dispatch(fetchTasks());
   };
 
   return (
@@ -82,7 +81,7 @@ const TaskForm = ({ closeForm }) => {
         <label className="mt-4">Assign User</label>
         <select onChange={onUserChange} className="border-2">
           {users.map((user, index) => (
-            <option key={index} value={user.name}>
+             <option key={index} value={user.id}>
               {user.name}
             </option>
           ))}

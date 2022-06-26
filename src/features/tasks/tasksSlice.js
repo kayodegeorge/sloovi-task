@@ -75,13 +75,15 @@ const tasksSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(addNewTask.fulfilled, (state, action) => {
-        console.log(action.payload);
+        state.tasks.push(action.payload.results);
       })
       .addCase(editTask.fulfilled, (state, action) => {
         console.log(action.payload);
       })
       .addCase(deleteTask.fulfilled, (state, action) => {
-        console.log(action.payload);
+        const id = action.meta.arg;
+        const tasks = state.tasks.filter((task) => task.id !== id);
+        state.tasks = tasks
       });
   },
 });
