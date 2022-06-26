@@ -54,7 +54,7 @@ const TaskForm = ({ closeForm }) => {
       style={{backgroundColor:"#DFF6FF"}}>
         <label htmlFor="description">Task Description</label>
         <input
-          className="border-2"
+          className="border-2 border-solid border-blue-200"
           id="description"
           type="text"
           onChange={onDescriptionChange}
